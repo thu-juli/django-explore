@@ -1,9 +1,23 @@
 {% extends 'main.html' %}
 
 {% block content %}
+
     <h1>Projects</h1>
-    <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim placeat a dolorem recusandae dolor laboriosam commodi
-        minima! Enim hic nulla provident esse excepturi vel tempora tenetur, laudantium ipsum velit incidunt.
-    </p>
+    {{ msg }}
+
+    {% if data > 10 %}
+        <p> {{ data }} greather than 10</p>
+    {% elif data == 10 %}
+        <p> {{ data}} equal to 10</p>
+    {% else %}
+        <p> {{ data }} less than 10 </p>
+    {% endif %}
+    <br>
+    
+    {% for project in projectlist %}
+        {% comment %} static link {% endcomment %}
+        {% comment %} <p> Title: <a href="project/{{ project.id }}"> {{ project.title }} </a>--- {{ project.description }} </p> {% endcomment %}
+        <p>Title: <a href=" {% url 'projects' project.id %} "> {{ project.title }} </a> --- {{ project.description }} </p>
+    {% endfor %}
+
 {% endblock content %}
